@@ -1,7 +1,7 @@
 # Variables Configuration
 
 variable "cluster-name" {
-  default     = "eks-terraform"
+  default     = "sbox-stage-6"
   type        = string
   description = "The name of your EKS Cluster"
 }
@@ -68,26 +68,32 @@ variable "eks-cw-logging" {
 }
 
 variable "node-instance-type" {
-  default     = "m4.large"
+  default     = "m5.large"
   type        = string
   description = "Worker Node EC2 instance type"
 }
 
 variable "root-block-size" {
-  default     = "64"
+  default     = "32"
   type        = string
   description = "Size of the root EBS block device"
 
 }
 
+variable "simple-node-group-name-1" {
+  default     = "simple-nodes-1"
+  type        = string
+  description = "Autoscaling Desired node capacity"
+}
+
 variable "desired-capacity" {
-  default     = 2
+  default     = 1
   type        = string
   description = "Autoscaling Desired node capacity"
 }
 
 variable "max-size" {
-  default     = 5
+  default     = 1
   type        = string
   description = "Autoscaling maximum node capacity"
 }
@@ -107,4 +113,43 @@ variable "ec2-key-public-key" {
 variable "ec2-key-pair" {
   default     = "eks-nodes"
   type        = string
+}
+
+variable "node-spot-instance-type-1" {
+  type        = list(string)
+  description = "Worker Node EC2 instance type"
+  default     = ["m5.large", "m5a.large", "m5.xlarge", "m5a.xlarge", "m5.2xlarge", "m5a.2xlarge", "r5.large", "r5.xlarge", "r5.2xlarge","r5a.large", "r5a.xlarge", "r5a.2xlarge", "c5.xlarge","c5a.xlarge", "c5.2xlarge", "c5a.2xlarge"] 
+}
+
+
+variable "node-spot-node-group-name-1" {
+  default     = "spot-nodes-1"
+  type        = string
+  description = "Worker Node EC2 instance type"
+}
+
+
+variable "node-spot-capacity-type-1" {
+  default     = "SPOT"
+  type        = string
+  description = "Worker Node EC2 instance type"
+}
+
+
+variable "spot-desired-capacity-1" {
+  default     = 2
+  type        = string
+  description = "Autoscaling Desired node capacity"
+}
+
+variable "spot-max-size-1" {
+  default     = 5
+  type        = string
+  description = "Autoscaling maximum node capacity"
+}
+
+variable "spot-min-size-1" {
+  default     = 1
+  type        = string
+  description = "Autoscaling Minimum node capacity"
 }
